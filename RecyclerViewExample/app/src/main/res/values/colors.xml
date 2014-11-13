@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="jayway_blue">#41B6E6</color>
+    <color name="colorPrimaryDark">#0691CD</color>
+    <color name="colorAccent">#FF643F</color>
+
+    <color name="depth_0">#d7d7d7</color>
+    <color name="depth_1">#e1e1e1</color>
+    <color name="depth_2">#ebebeb</color>
+    <color name="depth_3">#FFFFFF</color>
+
+</resources>
