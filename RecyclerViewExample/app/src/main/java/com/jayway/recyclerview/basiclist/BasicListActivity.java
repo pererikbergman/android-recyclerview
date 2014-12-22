@@ -59,6 +59,12 @@ public class BasicListActivity extends ActionBarActivity {
         addData(15, 0);
 
         mBasicListAdapter.setData(new ArrayList<BasicListAdapter.Entity>(mData));
+        mBasicListAdapter.setOnItemClickListener(new BasicListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BasicListAdapter.Entity entity) {
+                System.out.println("BasicListActivity.onItemClick entity : " + entity);
+            }
+        });
         return mBasicListAdapter;
     }
 

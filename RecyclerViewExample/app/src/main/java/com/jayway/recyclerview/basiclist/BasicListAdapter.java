@@ -15,8 +15,9 @@ import com.jayway.recyclerview.R;
  */
 public class BasicListAdapter extends AbstractListAdapter<BasicListAdapter.Entity, BasicListAdapter.ViewHolder> {
 
-    private final Context        mContext;
-    private final LayoutInflater mInflater;
+    private final Context             mContext;
+    private final LayoutInflater      mInflater;
+    private       OnItemClickListener mOnItemClickListener;
 
     public BasicListAdapter(Context context) {
         mContext = context;
@@ -33,6 +34,10 @@ public class BasicListAdapter extends AbstractListAdapter<BasicListAdapter.Entit
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         viewHolder.bind(mData.get(position));
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mOnItemClickListener = listener;
     }
 
     public static class Entity {
@@ -65,15 +70,25 @@ public class BasicListAdapter extends AbstractListAdapter<BasicListAdapter.Entit
         }
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView mTextView;
+        private       Entity   mEntity;
 
         public ViewHolder(View v) {
             super(v);
             mTextView = (TextView) v.findViewById(R.id.label);
+            mTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mOnItemClickListener != null) {
+                        mOnItemClickListener.onItemClick(mEntity);
+                    }
+                }
+            });
         }
 
         public void bind(Entity entity) {
+            mEntity = entity;
             mTextView.setText(entity.getTitle());
         }
 
@@ -85,5 +100,9 @@ public class BasicListAdapter extends AbstractListAdapter<BasicListAdapter.Entit
         public String toString() {
             return "ViewHolder{" + mTextView.getText() + "}";
         }
+    }
+
+    public static interface OnItemClickListener {
+        public void onItemClick(Entity entity);
     }
 }
