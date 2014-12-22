@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import com.jayway.recyclerview.R;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -18,6 +17,10 @@ import java.util.List;
 public class BasicListActivity extends ActionBarActivity {
 
     private RecyclerView mRecyclerView;
+
+    private int                           mEntityCounter = 0;
+    private List<BasicListAdapter.Entity> mData          = new ArrayList<BasicListAdapter.Entity>();
+    private BasicListAdapter mBasicListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,16 +31,15 @@ public class BasicListActivity extends ActionBarActivity {
         mRecyclerView.setLayoutManager(getLayoutManager());
         mRecyclerView.setAdapter(getAdapter());
 
+        // This part is just added to show the animations.
         final SwipeRefreshLayout swipeView = (SwipeRefreshLayout) findViewById(R.id.swipe);
         swipeView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                System.out.println("FoldableListActivity.onRefresh");
                 swipeView.setRefreshing(true);
                 swipeView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        System.out.println("FoldableListActivity.run");
                         swipeView.setRefreshing(false);
                         addData(10, 5);
                     }
@@ -48,16 +50,16 @@ public class BasicListActivity extends ActionBarActivity {
         getSupportActionBar().setTitle("Basic List");
     }
 
-    private int mEntityCounter = 0;
-    private List<BasicListAdapter.Entity> mData = new ArrayList<BasicListAdapter.Entity>();
-    private BasicListAdapter basicListAdapter;
+    private RecyclerView.LayoutManager getLayoutManager() {
+        return new LinearLayoutManager(this);
+    }
 
     private RecyclerView.Adapter getAdapter() {
-        basicListAdapter = new BasicListAdapter(this);
+        mBasicListAdapter = new BasicListAdapter(this);
         addData(15, 0);
 
-        basicListAdapter.setData(new ArrayList<BasicListAdapter.Entity>(mData));
-        return basicListAdapter;
+        mBasicListAdapter.setData(new ArrayList<BasicListAdapter.Entity>(mData));
+        return mBasicListAdapter;
     }
 
     private void addData(int add, int del) {
@@ -71,10 +73,6 @@ public class BasicListActivity extends ActionBarActivity {
             mData.add(r, new BasicListAdapter.Entity("Item " + (++mEntityCounter)));
         }
 
-        basicListAdapter.setData(new ArrayList<BasicListAdapter.Entity>(mData));
-    }
-
-    private RecyclerView.LayoutManager getLayoutManager() {
-        return new LinearLayoutManager(this);
+        mBasicListAdapter.setData(new ArrayList<BasicListAdapter.Entity>(mData));
     }
 }

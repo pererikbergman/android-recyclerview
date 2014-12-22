@@ -19,7 +19,7 @@ public class BasicListAdapter extends AbstractListAdapter<BasicListAdapter.Entit
     private final LayoutInflater mInflater;
 
     public BasicListAdapter(Context context) {
-        mContext  = context;
+        mContext = context;
         mInflater = LayoutInflater.from(mContext);
     }
 
@@ -73,7 +73,7 @@ public class BasicListAdapter extends AbstractListAdapter<BasicListAdapter.Entit
             mTextView = (TextView) v.findViewById(R.id.label);
         }
 
-        public void bind(Entity entity){
+        public void bind(Entity entity) {
             mTextView.setText(entity.getTitle());
         }
 

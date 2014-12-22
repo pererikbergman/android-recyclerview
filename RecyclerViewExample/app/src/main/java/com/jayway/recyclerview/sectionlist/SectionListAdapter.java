@@ -21,7 +21,7 @@ public class SectionListAdapter extends AbstractTreeNodeAdapter<String, SectionL
     private final LayoutInflater mInflater;
 
     public SectionListAdapter(Context context) {
-        mContext  = context;
+        mContext = context;
         mInflater = LayoutInflater.from(mContext);
     }
 

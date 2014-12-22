@@ -15,12 +15,12 @@ import com.jayway.recyclerview.foldablelist.FoldableListAdapter;
  * Created by per-erik on 15/11/14.
  */
 public class StickyHeaderItemDecoration extends RecyclerView.ItemDecoration {
-    private final int mSectionType;
-    private FoldableListAdapter.ViewHolder header;
-    private LinearLayoutManager mLinearLayoutManager;
-    private final Paint paint = new Paint();
-    private SparseArray<Bitmap> mBitmapHeaders = new SparseArray<Bitmap>();
-    private boolean mInit = false;
+    private final int                            mSectionType;
+    private       FoldableListAdapter.ViewHolder header;
+    private       LinearLayoutManager            mLinearLayoutManager;
+    private final Paint               paint          = new Paint();
+    private       SparseArray<Bitmap> mBitmapHeaders = new SparseArray<Bitmap>();
+    private       boolean             mInit          = false;
     private RecyclerView.Adapter mAdapter;
 
 
@@ -39,7 +39,7 @@ public class StickyHeaderItemDecoration extends RecyclerView.ItemDecoration {
     }
 
     Bitmap fromView;
-    int last;
+    int    last;
 
     @Override
     public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {

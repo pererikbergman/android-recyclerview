@@ -14,7 +14,7 @@ import com.jayway.recyclerview.list.section.TreeNode;
  * Created by per-erik on 16/11/14.
  */
 public class SectionListActivity extends ActionBarActivity {
-    
+
     private RecyclerView mRecyclerView;
 
     @Override

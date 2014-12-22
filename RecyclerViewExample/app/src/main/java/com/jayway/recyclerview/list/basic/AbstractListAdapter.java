@@ -56,22 +56,22 @@ public abstract class AbstractListAdapter<V, K extends RecyclerView.ViewHolder> 
         return -1;
     }
 
-    private void addEntity(int i, V entity) {
+    public void addEntity(int i, V entity) {
         mData.add(i, entity);
         notifyItemInserted(i);
     }
 
-    private void deleteEntity(int i) {
+    public void deleteEntity(int i) {
         mData.remove(i);
         notifyItemRemoved(i);
     }
 
-    private void moveEntity(int i, int loc) {
+    public void moveEntity(int i, int loc) {
         swap(mData, loc, i);
         notifyItemMoved(loc, i);
     }
 
-    private void swap(List<V> data, int a, int b) {
+    public void swap(List<V> data, int a, int b) {
         V temp = data.get(a);
         data.set(a, data.get(b));
         data.set(b, temp);

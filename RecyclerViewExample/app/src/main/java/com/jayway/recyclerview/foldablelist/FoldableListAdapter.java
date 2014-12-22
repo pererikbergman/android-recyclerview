@@ -21,7 +21,7 @@ public class FoldableListAdapter extends AbstractTreeNodeAdapter<String, Foldabl
     private final LayoutInflater mInflater;
 
     public FoldableListAdapter(Context context) {
-        mContext  = context;
+        mContext = context;
         mInflater = LayoutInflater.from(mContext);
     }
 
@@ -52,10 +52,10 @@ public class FoldableListAdapter extends AbstractTreeNodeAdapter<String, Foldabl
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private final TextView mTextView;
+        private final TextView  mTextView;
         private final ImageView mImageView;
 
-        private int mPosition;
+        private int              mPosition;
         private TreeNode<String> mEntity;
 
         public ViewHolder(View v) {

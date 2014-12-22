@@ -16,10 +16,10 @@ public class TreeNode<K> {
     }
 
     public TreeNode(K data) {
-        mParent   = null;
+        mParent = null;
         mChildren = new ArrayList<TreeNode<K>>();
-        mData     = data;
-        mOpen     = true;
+        mData = data;
+        mOpen = true;
     }
 
     public TreeNode<K> addChild(TreeNode<K> child) {
@@ -40,13 +40,13 @@ public class TreeNode<K> {
     }
 
     public TreeNode<K> findByData(K data) {
-        if ( data.equals(mData)) {
+        if (data.equals(mData)) {
             return this;
         }
 
-        for( TreeNode<K> node : mChildren) {
+        for (TreeNode<K> node : mChildren) {
             TreeNode<K> foundData = node.findByData(data);
-            if ( foundData != null) {
+            if (foundData != null) {
                 return foundData;
             }
         }
@@ -66,7 +66,7 @@ public class TreeNode<K> {
     public int getDepth() {
         int depth = 0;
         TreeNode<K> parent = mParent;
-        while (parent!=null){
+        while (parent != null) {
             depth++;
             parent = parent.mParent;
         }
@@ -83,7 +83,7 @@ public class TreeNode<K> {
     }
 
     public List<TreeNode<K>> toList(List<TreeNode<K>> list) {
-        if (mOpen==false)
+        if (mOpen == false)
             return list;
 
         for (TreeNode<K> node : mChildren) {
@@ -110,7 +110,7 @@ public class TreeNode<K> {
     }
 
     public void dump() {
-        if (mOpen==false)
+        if (mOpen == false)
             return;
 
         System.out.println(this.toString());
@@ -122,7 +122,7 @@ public class TreeNode<K> {
 
     @Override
     public String toString() {
-        if (mData==null){
+        if (mData == null) {
             return "<no data>";
         }
 

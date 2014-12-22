@@ -9,7 +9,6 @@ import com.jayway.recyclerview.basiclist.BasicListActivity;
 import com.jayway.recyclerview.foldablelist.FoldableListActivity;
 import com.jayway.recyclerview.sectionlist.SectionListActivity;
 
-
 public class RecyclerViewActivity extends ActionBarActivity {
 
     @Override
