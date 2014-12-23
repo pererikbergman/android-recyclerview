@@ -32,7 +32,7 @@ public abstract class AbstractListAdapter<V, K extends RecyclerView.ViewHolder> 
             }
         }
 
-        // Add and swap items.
+        // Add and move items.
         for (int i = 0; i < data.size(); ++i) {
             V entity = data.get(i);
             int loc = getLocation(mData, entity);
@@ -67,13 +67,12 @@ public abstract class AbstractListAdapter<V, K extends RecyclerView.ViewHolder> 
     }
 
     public void moveEntity(int i, int loc) {
-        swap(mData, loc, i);
-        notifyItemMoved(loc, i);
+        move(mData, i, loc);
+        notifyItemMoved(i, loc);
     }
 
-    public void swap(List<V> data, int a, int b) {
-        V temp = data.get(a);
-        data.set(a, data.get(b));
-        data.set(b, temp);
+    private void move(List<V> data, int a, int b) {
+        V temp = data.remove(a);
+        data.add(b, temp);
     }
 }
