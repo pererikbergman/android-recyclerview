@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.example.android.supportv7.widget.decorator.DividerItemDecoration;
 import com.jayway.recyclerview.R;
 
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class BasicListActivity extends ActionBarActivity {
         mRecyclerView = (RecyclerView) findViewById(com.jayway.recyclerview.R.id.recyclerview);
         mRecyclerView.setLayoutManager(getLayoutManager());
         mRecyclerView.setAdapter(getAdapter());
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
 
         // This part is just added to show the animations.
         final SwipeRefreshLayout swipeView = (SwipeRefreshLayout) findViewById(R.id.swipe);
