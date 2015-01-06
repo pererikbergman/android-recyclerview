@@ -19,6 +19,7 @@ public class SectionListAdapter extends AbstractTreeNodeAdapter<String, SectionL
 
     private final Context        mContext;
     private final LayoutInflater mInflater;
+    private       OnItemClickListener mOnItemClickListener;
 
     public SectionListAdapter(Context context) {
         mContext = context;
@@ -45,6 +46,10 @@ public class SectionListAdapter extends AbstractTreeNodeAdapter<String, SectionL
         viewHolder.bind(mData.get(position));
     }
 
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mOnItemClickListener = listener;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView mTextView;
 
@@ -53,6 +58,14 @@ public class SectionListAdapter extends AbstractTreeNodeAdapter<String, SectionL
         public ViewHolder(View v) {
             super(v);
             mTextView = (TextView) v.findViewById(R.id.label);
+            mTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mOnItemClickListener != null) {
+                        mOnItemClickListener.onItemClick(mEntity);
+                    }
+                }
+            });
         }
 
         public void bind(TreeNode<String> entity) {
@@ -65,5 +78,9 @@ public class SectionListAdapter extends AbstractTreeNodeAdapter<String, SectionL
             return "ViewHolder{" + mTextView.getText() + "}";
         }
 
+    }
+
+    public static interface OnItemClickListener {
+        public void onItemClick(TreeNode<String> entity);
     }
 }

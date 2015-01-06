@@ -16,13 +16,12 @@ import com.jayway.recyclerview.foldablelist.FoldableListAdapter;
  */
 public class StickyHeaderItemDecoration extends RecyclerView.ItemDecoration {
     private final int                            mSectionType;
-    private       FoldableListAdapter.ViewHolder header;
+    private       FoldableListAdapter.ViewHolder mHeader;
     private       LinearLayoutManager            mLinearLayoutManager;
     private final Paint               paint          = new Paint();
     private       SparseArray<Bitmap> mBitmapHeaders = new SparseArray<Bitmap>();
     private       boolean             mInit          = false;
     private RecyclerView.Adapter mAdapter;
-
 
     public StickyHeaderItemDecoration(Context context, int sectionType) {
         paint.setColor(0xFFFF00FF);
@@ -40,6 +39,7 @@ public class StickyHeaderItemDecoration extends RecyclerView.ItemDecoration {
 
     Bitmap fromView;
     int    last;
+
 
     @Override
     public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {

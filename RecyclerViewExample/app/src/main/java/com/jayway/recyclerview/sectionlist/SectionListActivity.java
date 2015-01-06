@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.jayway.recyclerview.R;
-import com.jayway.recyclerview.list.section.StickyHeaderItemDecoration;
+import com.example.android.supportv7.widget.decorator.DividerItemDecoration;
 import com.jayway.recyclerview.list.section.TreeNode;
 
 /**
@@ -24,7 +24,7 @@ public class SectionListActivity extends ActionBarActivity {
 
         mRecyclerView = (RecyclerView) findViewById(com.jayway.recyclerview.R.id.recyclerview);
         mRecyclerView.setLayoutManager(getLayoutManager());
-        mRecyclerView.addItemDecoration(new StickyHeaderItemDecoration(this, 1));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         mRecyclerView.setAdapter(getAdapter());
 
         final SwipeRefreshLayout swipeView = (SwipeRefreshLayout) findViewById(R.id.swipe);
@@ -57,10 +57,18 @@ public class SectionListActivity extends ActionBarActivity {
         }
 
         sectionListAdapter.setTree(root);
+        sectionListAdapter.setOnItemClickListener(new SectionListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(TreeNode<String> entity) {
+                System.out.println("BasicListActivity.onItemClick entity : " + entity);
+            }
+        });
         return sectionListAdapter;
     }
 
     private RecyclerView.LayoutManager getLayoutManager() {
-        return new LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        return linearLayoutManager;
     }
 }
